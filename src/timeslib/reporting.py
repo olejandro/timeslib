@@ -16,6 +16,7 @@ along with Timeslib. If not, see <https://www.gnu.org/licenses/>.
 
 import pandas as pd
 
+
 def print_to_xlsx(df, sheet_by_column, file_name):
 
     writer = pd.ExcelWriter(file_name, engine="xlsxwriter")
