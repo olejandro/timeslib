@@ -86,5 +86,9 @@ def read_data_csv(file_path, table_info):
     if "reverseSign" in table_info[table_name].keys():
         if table_info[table_name]["reverseSign"] is True:
             df = -df
-            
+
+    if "cumulate" in table_info[table_name].keys():
+        if table_info[table_name]["cumulate"] is True:
+            df['total'] = df.groupby([i for i in df.index.names if not i == "year"])['total'].cumsum()
+
     return df.reset_index()
