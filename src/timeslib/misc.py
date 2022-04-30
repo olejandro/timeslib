@@ -71,6 +71,11 @@ def read_data_csv(file_path, table_info):
         "Userconstraint",
     )
 
+    # Filter data
+    if "filter" in table_info[table_name].keys():
+        for k, v in table_info[table_name]["filter"].items():
+            df = df[df[k].isin(v)]
+
     # Remove columns in excludeColumns
     df = df[[i for i in df.columns if i not in exclude_columns]]
 
