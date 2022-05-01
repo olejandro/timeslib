@@ -46,6 +46,7 @@ def read_data_csv(file_path, table_info):
             df["Units"] = table_info[table_name]["defaultUnit"]
         else:
             df["Units"] = "missing"
+
     rename_dims_map = {
         "Scenario": "scenario",
         "Period": "year",
@@ -54,8 +55,6 @@ def read_data_csv(file_path, table_info):
         "Units": "label",
         table_info[table_name]["keepDimensions"]: "seriesName",
     }
-
-    df.rename(columns=rename_dims_map, inplace=True)
 
     exclude_columns = (
         "UserName",
@@ -75,6 +74,9 @@ def read_data_csv(file_path, table_info):
     if "filter" in table_info[table_name].keys():
         for k, v in table_info[table_name]["filter"].items():
             df = df[df[k].isin(v)]
+
+    # Rename some columns
+    df.rename(columns=rename_dims_map, inplace=True)
 
     # Remove columns in excludeColumns
     df = df[[i for i in df.columns if i not in exclude_columns]]
