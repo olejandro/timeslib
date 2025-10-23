@@ -14,7 +14,7 @@ You should have received a copy of the GNU Affero General Public License
 along with Timeslib. If not, see <https://www.gnu.org/licenses/>.
 """
 
-import pathlib
+from pathlib import Path
 import pandas as pd
 
 
@@ -25,7 +25,7 @@ def read_data_csv(file_path, table_info):
             "No info found on how to process: {}. It will be skipped.".format(file_path)
         )
         return None
-    table_name = pathlib.Path(file_path).name.removesuffix(".csv")
+    table_name = Path(file_path).name.removesuffix(".csv")
 
     if table_name not in table_info.keys():
         print(
