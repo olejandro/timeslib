@@ -45,7 +45,7 @@ def fix_appdata_file(
     valid_items.sort()
     # Hold sorted data
     sorted_data = []
-    # Populated the list with sorted data
+    # Populate the list with sorted data
     for valid_item in valid_items:
         for i in data:
             if i[sort_id] == valid_item:
